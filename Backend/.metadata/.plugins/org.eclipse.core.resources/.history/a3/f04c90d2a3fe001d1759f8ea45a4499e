@@ -1,0 +1,45 @@
+package com.example.demo.controller;
+
+import java.util.List;
+
+import com.example.demo.entity.Book;
+import com.example.demo.entity.Bookshop;
+
+public class BookshopService {
+
+	public void addNewBookshop(Bookshop bookshop) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<Bookshop> getBookshops() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Bookshop getBookshopById(long bookshopId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Bookshop getBookshopByTitle(String shopName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Bookshop updateBookshop(Bookshop bookshop) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void deleteBookshop(long shopId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteAllBookshops() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,58 @@
+package com.example.demo.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.demo.entity.Bookshop;
+import com.example.demo.repository.BookshopRepository;
+
+public class BookshopService {
+	
+	@Autowired
+	private BookshopRepository bookshopRepository;
+
+	public void addNewBookshop(Bookshop bookshop) {
+		// TODO Auto-generated method stub
+		bookshopRepository.save(bookshop);
+	}
+
+	public List<Bookshop> getBookshops() {
+		// TODO Auto-generated method stub
+		return bookshopRepository.findAll();
+	}
+
+	public Bookshop getBookshopById(long bookshopId) {
+		// TODO Auto-generated method stub
+		return bookshopRepository.findById(bookshopId).get();
+	}
+
+	public Bookshop getBookshopByTitle(String shopName) {
+		// TODO Auto-generated method stub
+		return bookshopRepository.findByShopName(shopName);
+	}
+
+	//
+	public Bookshop updateBookshop(Bookshop bookshop) {
+		// TODO Auto-generated method stub
+		Bookshop prev=bookshopRepository.findById(bookshop.getShopId()).orElse(null);
+		prev.setShopName(bookshop.getShopName());
+		prev.setLocation(bookshop.getLocation());
+		prev.setEmail(bookshop.getEmail());
+		prev.setContactNo(bookshop.getContactNo());
+		prev.setBooks(bookshop.getBooks());
+		return bookshopRepository.save(prev);
+		
+	}
+
+	public void deleteBookshop(long shopId) {
+		// TODO Auto-generated method stub
+		bookshopRepository.deleteById(shopId);
+	}
+
+	public void deleteAllBookshops() {
+		// TODO Auto-generated method stub
+		bookshopRepository.deleteAll();
+	}
+
+}

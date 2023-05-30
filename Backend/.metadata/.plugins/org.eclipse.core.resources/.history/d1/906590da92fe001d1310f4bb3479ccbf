@@ -1,0 +1,98 @@
+package com.example.demo.service;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entity.Book;
+import com.example.demo.repository.BookRepository;
+
+import jakarta.transaction.Transactional;
+
+
+@Service
+public class BookService {
+	
+	private final BookRepository bookRepository;
+	
+	
+	@Autowired
+	public BookService(BookRepository bookRepository) {
+		
+		this.bookRepository = bookRepository;
+	}
+
+
+
+	public List<Book> getBooks(){
+		return bookRepository.findAll();
+	}
+
+
+
+	public void addNewBook(Book book) {
+		// TODO Auto-generated method stub
+		Optional<Book> bookByTitle = bookRepository.
+				findBookByTitle(book.getTitle());
+		if(bookByTitle.isPresent()) {
+			System.out.println("already present");
+		}
+		else {
+			bookRepository.save(book);
+		}
+	}
+
+
+
+	public void deleteBook(long Id) {
+		// TODO Auto-generated method stub
+		boolean exists = bookRepository.existsById(Id);
+		if(!exists) {
+			System.out.println("does not exist");
+		}
+		bookRepository.deleteById(Id);
+	}
+
+
+
+	@Transactional
+	public void updateBook(long bookId, String title, Double price, Integer year_of_publish, String author, String genre,
+			String publisher) {
+		// TODO Auto-generated method stub
+		Book book = bookRepository.findById(bookId).orElseThrow(() -> new IllegalStateException("does not exist\n"));
+		if (title!= null && title.length()>0 && !Objects.equals(book.getTitle(), title)) {
+			
+			Optional<Book> bookOptional = bookRepository.findBookByTitle(title);
+			if(bookOptional.isPresent()) {
+				throw new IllegalStateException("title taken\n");
+			}
+			book.setTitle(title);
+			
+		}
+		
+		if(price!=null && book.getPrice()!=price) {
+			book.setPrice(price);
+		}
+		
+		if(year_of_publish!=null && book.getYear_of_publish()!=year_of_publish) {
+			book.setYear_of_publish(year_of_publish);
+		}
+		
+		if (author!= null && author.length()>0 && !Objects.equals(book.getAuthor(), author)) {
+			book.setAuthor(author);
+		}
+		
+		if (genre!= null && genre.length()>0 && !Objects.equals(book.getGenre(), genre)) {
+			book.setGenre(genre);
+		}
+		
+		if (publisher!= null && publisher.length()>0 && !Objects.equals(book.getPublisher(), publisher)) {
+			book.setPublisher(publisher);
+		}
+	}
+	
+
+}

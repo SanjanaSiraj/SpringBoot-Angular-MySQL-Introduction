@@ -1,0 +1,80 @@
+package com.example.demo.entity;
+
+public class Book {
+	private String title;
+	private double price;
+	private int year_of_publish;
+	private String author;
+	private String genre;
+	private String publisher;
+	
+	public Book(){
+		
+	}
+	
+	public Book(	String title,
+			double price,
+			int year_of_publish,
+			String author,
+			String genre,
+			String publisher){
+		
+		this.title = title;
+		this.price = price;
+		this.year_of_publish = year_of_publish;
+		this.author = author;
+		this.genre = genre;
+		this.publisher = publisher;
+		
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public int getYear_of_publish() {
+		return year_of_publish;
+	}
+
+	public void setYear_of_publish(int year_of_publish) {
+		this.year_of_publish = year_of_publish;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+	
+	
+}

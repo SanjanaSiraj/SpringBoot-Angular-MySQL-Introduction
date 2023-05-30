@@ -1,0 +1,6 @@
+spring.datasource.url = jdbc:mysql://localhost:3306/bookshopdb?useSSL=false
+spring.datasource.username = root
+spring.datasource.password = 7SP2XE9U
+spring.jpa.database-platform = org.hibernate.dialect.MySQL5InnoDBDialect
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true

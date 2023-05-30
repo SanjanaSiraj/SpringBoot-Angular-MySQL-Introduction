@@ -1,0 +1,68 @@
+package com.example.demo.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entity.Book;
+import com.example.demo.repository.BookRepository;
+
+import jakarta.transaction.Transactional;
+
+
+@Service
+public class BookService {
+	
+	private final BookRepository bookRepository;
+	
+	
+	@Autowired
+	public BookService(BookRepository bookRepository) {
+		
+		this.bookRepository = bookRepository;
+	}
+
+
+
+	public List<Book> getBooks(){
+		return bookRepository.findAll();
+	}
+
+
+
+	public void addNewBook(Book book) {
+		// TODO Auto-generated method stub
+		Optional<Book> bookByTitle = bookRepository.
+				findBookByTitle(book.getTitle());
+		if(bookByTitle.isPresent()) {
+			System.out.println("already present");
+		}
+		else {
+			bookRepository.save(book);
+		}
+	}
+
+
+
+	public void deleteBook(long Id) {
+		// TODO Auto-generated method stub
+		boolean exists = bookRepository.existsById(Id);
+		if(!exists) {
+			System.out.println("does not exist");
+		}
+		bookRepository.deleteById(Id);
+	}
+
+
+
+	@Transactional
+	public void updateBook(long bookId, String title, double price, int year_of_publish, String author, String genre,
+			String publisher) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}
